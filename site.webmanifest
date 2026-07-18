@@ -1,0 +1,18 @@
+{
+  "name": "Umbrella Problems",
+  "short_name": "Umbrella",
+  "description": "An interactive rainy cartoon about one spectacularly unhelpful umbrella.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#c8dadd",
+  "theme_color": "#c8dadd",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

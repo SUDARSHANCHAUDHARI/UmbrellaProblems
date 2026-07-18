@@ -1,0 +1,30 @@
+{
+  "name": "umbrella-problems",
+  "version": "1.0.0",
+  "private": true,
+  "description": "An interactive rainy cartoon about one spectacularly unhelpful umbrella.",
+  "author": "SudarshanTechLabs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SUDARSHANCHAUDHARI/UmbrellaProblems.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SUDARSHANCHAUDHARI/UmbrellaProblems/issues"
+  },
+  "scripts": {
+    "serve": "python3 -m http.server 4173",
+    "test": "node --test",
+    "check": "node --check script.js && node --test"
+  },
+  "keywords": [
+    "svg",
+    "animation",
+    "vanilla-javascript",
+    "interactive"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "pnpm@10.28.2",
+  "license": "UNLICENSED"
+}

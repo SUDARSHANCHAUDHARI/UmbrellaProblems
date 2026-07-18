@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="An interactive rainy cartoon about one spectacularly unhelpful umbrella."
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="referrer" content="no-referrer" />
+    <meta name="color-scheme" content="light" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="theme-color" content="#c8dadd" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Umbrella Problems" />
+    <meta property="og:title" content="Umbrella Problems" />
+    <meta
+      property="og:description"
+      content="An interactive rainy cartoon about one spectacularly unhelpful umbrella."
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Umbrella Problems" />
+    <meta
+      name="twitter:description"
+      content="An interactive rainy cartoon about one spectacularly unhelpful umbrella."
+    />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; font-src 'self'; object-src 'none'; media-src 'none'; worker-src 'none'; base-uri 'none'; form-action 'none'"
+    />
+    <title>Umbrella Problems</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#weatherScene">Skip to the umbrella</a>
+
+    <div class="app-shell">
+      <header class="masthead">
+        <div class="brand-block">
+          <p class="eyebrow">Field test · persistent drizzle</p>
+          <h1>Umbrella<br /><em>Problems</em></h1>
+          <p class="deck">It shelters absolutely everything. Except Milo.</p>
+        </div>
+
+        <div class="utility-controls" aria-label="Scene controls">
+          <button
+            class="utility-button"
+            id="soundToggle"
+            type="button"
+            aria-pressed="false"
+          >
+            <span class="control-icon" aria-hidden="true">◖</span>
+            <span id="soundLabel">Sound off</span>
+          </button>
+          <button class="utility-button" id="resetButton" type="button">
+            <span class="control-icon" aria-hidden="true">↺</span>
+            Reset
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section class="field-card" aria-labelledby="sceneTitle">
+          <div class="scene-heading">
+            <div>
+              <p class="scene-kicker">Live conditions</p>
+              <h2 id="sceneTitle">One cloud. One umbrella. No cooperation.</h2>
+            </div>
+            <div class="weather-stamp" aria-label="Weather: twelve degrees Celsius, wet">
+              <span>12°</span>
+              <small>WET</small>
+            </div>
+          </div>
+
+          <div
+            class="weather-scene"
+            id="weatherScene"
+            role="button"
+            tabindex="0"
+            aria-label="Rainy scene. Try to open Milo's closed umbrella."
+            aria-describedby="sceneHint"
+          >
+            <div class="rain-layer" id="rainLayer" aria-hidden="true"></div>
+            <div class="wind-layer" aria-hidden="true">
+              <i style="--y: 22%; --delay: -1.8s; --width: 15%"></i>
+              <i style="--y: 34%; --delay: -4.1s; --width: 10%"></i>
+              <i style="--y: 54%; --delay: -0.7s; --width: 19%"></i>
+              <i style="--y: 68%; --delay: -3.2s; --width: 12%"></i>
+            </div>
+
+            <svg
+              class="scene-art"
+              viewBox="0 0 1000 620"
+              role="img"
+              aria-labelledby="svgTitle svgDescription"
+              preserveAspectRatio="xMidYMid meet"
+            >
+              <title id="svgTitle">Milo standing in the rain with a closed umbrella</title>
+              <desc id="svgDescription">
+                A cartoon rainy street with clouds, puddles, wind, a small bird, and Milo in a
+                yellow raincoat trying to use a red umbrella.
+              </desc>
+
+              <defs>
+                <linearGradient id="skyWash" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#b7cfd5" />
+                  <stop offset="1" stop-color="#d8e5e4" />
+                </linearGradient>
+                <linearGradient id="groundWash" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#789696" />
+                  <stop offset="1" stop-color="#587b80" />
+                </linearGradient>
+                <filter id="paperNoise" x="-20%" y="-20%" width="140%" height="140%">
+                  <feTurbulence
+                    type="fractalNoise"
+                    baseFrequency="0.85"
+                    numOctaves="2"
+                    seed="8"
+                    result="noise"
+                  />
+                  <feColorMatrix in="noise" type="saturate" values="0" result="monoNoise" />
+                  <feComponentTransfer in="monoNoise" result="fadedNoise">
+                    <feFuncA type="table" tableValues="0 0.045" />
+                  </feComponentTransfer>
+                  <feBlend in="SourceGraphic" in2="fadedNoise" mode="multiply" />
+                </filter>
+                <filter id="softShadow" x="-30%" y="-30%" width="160%" height="170%">
+                  <feDropShadow dx="0" dy="9" stdDeviation="8" flood-color="#163245" flood-opacity="0.22" />
+                </filter>
+                <clipPath id="sceneClip">
+                  <rect width="1000" height="620" rx="24" />
+                </clipPath>
+              </defs>
+
+              <g clip-path="url(#sceneClip)" filter="url(#paperNoise)">
+                <rect width="1000" height="620" fill="url(#skyWash)" />
+                <path
+                  class="distant-city"
+                  d="M0 366V308h74v25h52v-75h93v57h48v-93h92v111h59v-54h78v35h54v-88h88v121h72v-66h84v32h62v-94h96v177Z"
+                  fill="#8ca8ab"
+                  opacity=".42"
+                />
+
+                <g class="cloud cloud--one" fill="#526d79" stroke="#173047" stroke-width="5">
+                  <path d="M35 126c0-35 31-61 67-55 17-42 81-44 102-4 38-9 73 17 73 54 0 35-29 58-65 58H95c-34 0-60-20-60-53Z" />
+                  <path d="M73 177c16 15 34 15 51 0M153 178c16 14 34 14 51-1" fill="none" opacity=".36" />
+                </g>
+                <g class="cloud cloud--two" fill="#6f8991" stroke="#173047" stroke-width="5">
+                  <path d="M620 101c0-27 23-46 52-42 13-31 63-33 79-3 30-7 57 13 57 41 0 27-23 45-50 45h-91c-27 0-47-16-47-41Z" />
+                </g>
+
+                <g class="street-details" stroke="#173047" stroke-width="5" stroke-linecap="round">
+                  <path d="M105 288v213M73 315h65" fill="none" />
+                  <path d="M73 316l31-34 34 34Z" fill="#f0b955" />
+                  <path d="M802 332v174M759 356h86" fill="none" />
+                  <rect x="754" y="314" width="96" height="54" rx="6" fill="#e8d8a8" />
+                  <path d="M773 334h58" />
+                </g>
+
+                <g class="bird" id="bird" transform="translate(818 285)">
+                  <path d="M-21 20c-1-27 17-44 42-38 21 5 29 27 19 45-9 17-38 21-54 9Z" fill="#f0b955" stroke="#173047" stroke-width="5" />
+                  <path d="M36 3l25 10-25 9Z" fill="#ee6b59" stroke="#173047" stroke-width="4" />
+                  <circle cx="20" cy="-3" r="4" fill="#173047" />
+                  <path d="M-3 14q15-15 27 1M-2 39l-4 13M18 40l3 12" fill="none" stroke="#173047" stroke-width="4" stroke-linecap="round" />
+                  <path class="bird-wing" d="M-16 17q-25-13-31 7 22 15 39 3Z" fill="#d99d3d" stroke="#173047" stroke-width="4" />
+                </g>
+
+                <path d="M0 438q177-23 343 5t317-2q168-29 340 0v179H0Z" fill="url(#groundWash)" />
+                <path d="M0 472q232-15 493 6t507-9" fill="none" stroke="#c7dcda" stroke-width="5" opacity=".48" />
+
+                <g class="puddle puddle--left">
+                  <ellipse cx="178" cy="542" rx="131" ry="29" fill="#3d707f" opacity=".8" />
+                  <ellipse cx="178" cy="538" rx="84" ry="14" fill="none" stroke="#add1d3" stroke-width="5" opacity=".75" />
+                </g>
+                <g class="puddle puddle--right">
+                  <ellipse cx="801" cy="561" rx="155" ry="31" fill="#3d707f" opacity=".78" />
+                  <ellipse cx="801" cy="556" rx="91" ry="14" fill="none" stroke="#add1d3" stroke-width="5" opacity=".7" />
+                </g>
+
+                <g class="character" id="character" filter="url(#softShadow)">
+                  <ellipse cx="501" cy="584" rx="91" ry="17" fill="#173047" opacity=".18" />
+                  <path d="M447 550l-8 35h45l5-34M535 550l8 35h44l-10-37" fill="#28475b" stroke="#173047" stroke-width="7" stroke-linejoin="round" />
+                  <path d="M451 395q51-39 108 1l32 164H416Z" fill="#f0bd46" stroke="#173047" stroke-width="8" stroke-linejoin="round" />
+                  <path d="M453 407l-49 100 37 18 48-79M555 409l48 91-34 22-49-78" fill="#f0bd46" stroke="#173047" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+                  <circle cx="401" cy="512" r="14" fill="#eab58e" stroke="#173047" stroke-width="6" />
+                  <circle cx="583" cy="510" r="14" fill="#eab58e" stroke="#173047" stroke-width="6" />
+                  <path d="M484 350v45h51v-45" fill="#eab58e" stroke="#173047" stroke-width="7" />
+                  <circle cx="510" cy="321" r="60" fill="#eab58e" stroke="#173047" stroke-width="8" />
+                  <path d="M454 313q-4-57 50-67 50-7 69 45-22-18-44-6-27-22-75 28Z" fill="#253f50" stroke="#173047" stroke-width="7" stroke-linejoin="round" />
+                  <path d="M471 297q14-14 29 0M526 297q14-13 28 1" fill="none" stroke="#173047" stroke-width="5" stroke-linecap="round" />
+                  <circle cx="489" cy="316" r="5" fill="#173047" />
+                  <circle cx="541" cy="316" r="5" fill="#173047" />
+                  <path d="M503 344q15 13 30-1" fill="none" stroke="#173047" stroke-width="5" stroke-linecap="round" />
+                  <path d="M509 395v155M462 445h93" fill="none" stroke="#c98e2d" stroke-width="5" opacity=".65" />
+                  <g class="wet-marks" fill="#4e8494">
+                    <path d="M467 370q8-17 16 0c0 11-16 12-16 0Z" />
+                    <path d="M548 356q7-16 14 0c0 10-14 10-14 0Z" />
+                    <path d="M474 432q9-20 18 0c0 12-18 13-18 0Z" />
+                    <path d="M532 480q8-18 16 0c0 11-16 12-16 0Z" />
+                    <path d="M447 510q7-16 14 0c0 10-14 10-14 0Z" />
+                  </g>
+                </g>
+
+                <g class="umbrella-assembly" id="umbrellaAssembly">
+                  <g class="umbrella-handle" id="umbrellaHandle" fill="none" stroke="#173047" stroke-width="9" stroke-linecap="round">
+                    <path d="M511 237v239q0 35 29 35 25 0 25-27" />
+                  </g>
+                  <g class="closed-canopy" stroke="#173047" stroke-width="7" stroke-linejoin="round">
+                    <path d="M510 139q-34 46-31 153l31 42 32-42q1-106-32-153Z" fill="#ee6b59" />
+                    <path d="M510 148v177M489 279l21 46 22-46" fill="none" opacity=".48" />
+                    <path d="M510 138v-17" fill="none" stroke-linecap="round" />
+                  </g>
+                  <g class="open-canopy" stroke="#173047" stroke-width="7" stroke-linejoin="round">
+                    <path d="M367 249Q510 83 653 249q-37-30-71 0-37-30-72 0-36-30-72 0-34-29-71 0Z" fill="#ee6b59" />
+                    <path d="M510 110v139M370 246q64-101 140-136 77 35 140 136" fill="none" opacity=".45" />
+                    <path d="M510 109V91" fill="none" stroke-linecap="round" />
+                  </g>
+                  <path
+                    class="water-pour"
+                    id="waterPour"
+                    d="M398 238q-29 54 10 79 48 28 67 86 10 31 37 49"
+                    fill="none"
+                    stroke="#56a9c2"
+                    stroke-width="26"
+                    stroke-linecap="round"
+                    opacity="0"
+                  />
+                  <rect
+                    id="umbrellaHitArea"
+                    x="345"
+                    y="85"
+                    width="330"
+                    height="440"
+                    fill="transparent"
+                    aria-hidden="true"
+                  />
+                </g>
+              </g>
+            </svg>
+
+            <div class="scene-note" aria-hidden="true">
+              <span>drag / tap / click</span>
+              <svg viewBox="0 0 64 30">
+                <path d="M2 5q29 2 52 17M45 12l10 10-14 4" />
+              </svg>
+            </div>
+          </div>
+
+          <div class="instrument-panel">
+            <div class="status-copy" role="status" aria-live="polite" aria-atomic="true">
+              <p class="status-label" id="statusLabel">Attempt 0 of 10</p>
+              <h3 id="statusTitle">The umbrella is pretending not to know you.</h3>
+              <p id="statusText">Open it if you can. Click, tap, drag, or use the button.</p>
+            </div>
+
+            <div class="action-block">
+              <button class="try-button" id="tryButton" type="button">
+                <span>Try the umbrella</span>
+                <span class="button-arrow" aria-hidden="true">→</span>
+              </button>
+              <p class="interaction-hint" id="sceneHint">Keyboard: focus the scene and press Enter or Space.</p>
+            </div>
+
+            <div class="attempts-block">
+              <div class="attempts-heading">
+                <span>Field attempts</span>
+                <span id="attemptFraction" aria-hidden="true">00 / 10</span>
+              </div>
+              <ol class="attempt-meter" id="attemptMeter" aria-label="No attempts yet">
+                <li><span>1</span></li>
+                <li><span>2</span></li>
+                <li><span>3</span></li>
+                <li><span>4</span></li>
+                <li><span>5</span></li>
+                <li><span>6</span></li>
+                <li><span>7</span></li>
+                <li><span>8</span></li>
+                <li><span>9</span></li>
+                <li><span>10</span></li>
+              </ol>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <span>Umbrella Problems</span>
+        <span>Forecast accuracy: emotionally correct</span>
+      </footer>
+    </div>
+
+    <noscript>
+      <p class="noscript-message">This umbrella needs JavaScript before it can malfunction.</p>
+    </noscript>
+    <script src="script.js" defer></script>
+  </body>
+</html>

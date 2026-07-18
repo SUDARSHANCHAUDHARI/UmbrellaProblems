@@ -1,0 +1,39 @@
+# Operating systems
+.DS_Store
+Thumbs.db
+
+# Editors and local tooling
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Dependencies, caches, and generated output
+node_modules/
+coverage/
+dist/
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+.vercel/
+.netlify/
+.wrangler/
+*.log
+
+# Environment and local configuration
+.env
+.env.*
+!.env.example
+local.properties
+secure.properties
+keystore.properties
+auth.json
+
+# Credentials and signing material
+*.key
+*.pem
+*.p12
+*.pfx
+*.jks
+*.keystore
