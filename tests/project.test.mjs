@@ -39,7 +39,10 @@ test("contains the complete standalone project file set", async () => {
 });
 
 test("keeps the browser experience self-contained", () => {
-  const localAssets = `${html}\n${css}`;
+  const localAssets = `${html}\n${css}`.replace(
+    /href="https:\/\/sudarshanchaudhari\.github\.io\/TinyChaos\/"/g,
+    "",
+  );
   assert.doesNotMatch(localAssets, /(?:src|href)=["']https?:\/\//i);
   assert.doesNotMatch(css, /url\(["']?https?:\/\//i);
   assert.match(html, /<script src="script\.js" defer><\/script>/);
@@ -140,4 +143,17 @@ test("documents operation, controls, checks, and accessibility features", () => 
   assert.match(readme, /Enter.*Space/s);
   assert.match(readme, /prefers-reduced-motion/);
   assert.match(readme, /pnpm check/);
+});
+
+test("uses the shared TinyChaos shell contract", () => {
+  for (const color of ["#15152a", "#fff5df", "#ff5d5d", "#4f7cff", "#ffd166", "#58d6a9", "#b695ff"]) {
+    assert.match(css, new RegExp(`--(?:ink|paper|coral|blue|butter|mint|lilac):\\s*${color}`, "i"));
+  }
+  assert.match(css, /--display-font:\s*Impact/);
+  assert.match(css, /--body-font:\s*"Arial Rounded MT Bold"/);
+  assert.match(css, /:focus-visible\s*\{[\s\S]*outline:\s*4px solid var\(--blue\)/);
+  assert.match(css, /body\s*\{[\s\S]*min-width:\s*0;[\s\S]*overflow-x:\s*clip;[\s\S]*overflow-y:\s*auto;/);
+  assert.match(css, /html\s*\{[\s\S]*min-width:\s*0;/);
+  assert.match(html, /href="https:\/\/sudarshanchaudhari\.github\.io\/TinyChaos\/"/);
+  assert.match(html, /UmbrellaProblems · by Sudarshan Chaudhari/);
 });

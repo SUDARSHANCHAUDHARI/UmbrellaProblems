@@ -1,4 +1,13 @@
 :root {
+  --ink: #15152a;
+  --paper: #fff5df;
+  --coral: #ff5d5d;
+  --blue: #4f7cff;
+  --butter: #ffd166;
+  --mint: #58d6a9;
+  --lilac: #b695ff;
+  --display-font: Impact, Haettenschweiler, "Arial Narrow Bold", "Franklin Gothic Condensed", sans-serif;
+  --body-font: "Arial Rounded MT Bold", "Avenir Next Rounded", "Trebuchet MS", ui-rounded, system-ui, sans-serif;
   --storm-ink: #173047;
   --storm-blue: #526d79;
   --paper-sky: #c8dadd;
@@ -9,7 +18,7 @@
   --line: rgba(23, 48, 71, 0.28);
   --shadow: 0 22px 70px rgba(23, 48, 71, 0.2);
   color-scheme: light;
-  font-family: "Trebuchet MS", "Avenir Next", Avenir, sans-serif;
+  font-family: var(--body-font);
   font-synthesis: none;
 }
 
@@ -18,14 +27,16 @@
 }
 
 html {
-  min-width: 320px;
+  min-width: 0;
   background: var(--paper-sky);
 }
 
 body {
-  min-width: 320px;
+  min-width: 0;
   min-height: 100vh;
   margin: 0;
+  overflow-x: clip;
+  overflow-y: auto;
   color: var(--storm-ink);
   background:
     radial-gradient(circle at 12% 8%, rgba(255, 255, 255, 0.48), transparent 26rem),
@@ -103,7 +114,7 @@ p {
 
 h1 {
   margin-bottom: 0;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--display-font);
   font-size: clamp(2.6rem, 7vw, 5.9rem);
   font-weight: 400;
   line-height: 0.72;
@@ -655,10 +666,22 @@ h1 em {
 
 footer {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 1rem;
   padding: 1rem 0 0;
   opacity: 0.72;
+}
+
+.tinychaos-credit {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.tinychaos-credit a {
+  color: var(--ink);
+  font-weight: 900;
 }
 
 .noscript-message {
@@ -676,9 +699,9 @@ footer {
 }
 
 :focus-visible {
-  outline: 4px solid #fff5a6;
+  outline: 4px solid var(--blue);
   outline-offset: 4px;
-  box-shadow: 0 0 0 7px var(--storm-ink);
+  box-shadow: 0 0 0 4px var(--paper), 0 0 0 8px var(--ink);
 }
 
 .weather-scene:focus-visible {
