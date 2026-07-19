@@ -14,7 +14,7 @@
   --puddle-teal: #4b7f88;
   --raincoat: #f0bd46;
   --umbrella-coral: #ee6b59;
-  --paper: #f3f0df;
+  --scene-paper: #f3f0df;
   --line: rgba(23, 48, 71, 0.28);
   --shadow: 0 22px 70px rgba(23, 48, 71, 0.2);
   color-scheme: light;
@@ -148,12 +148,12 @@ h1 em {
   align-items: center;
   gap: 0.55rem;
   padding: 0.62rem 0.88rem;
-  color: var(--storm-ink);
-  background: rgba(243, 240, 223, 0.58);
-  border: 1px solid var(--storm-ink);
+  color: var(--ink);
+  background: var(--paper);
+  border: 3px solid var(--ink);
   border-radius: 999px;
   cursor: pointer;
-  box-shadow: 2px 3px 0 rgba(23, 48, 71, 0.15);
+  box-shadow: 4px 4px 0 var(--ink);
 }
 
 .control-icon {
@@ -171,7 +171,7 @@ h1 em {
 
 .field-card {
   overflow: hidden;
-  background: rgba(243, 240, 223, 0.93);
+  background: var(--scene-paper);
   border: 2px solid var(--storm-ink);
   border-radius: 1.4rem 1.4rem 0.75rem 0.75rem;
   box-shadow: var(--shadow), 7px 8px 0 rgba(23, 48, 71, 0.14);
@@ -556,13 +556,13 @@ h1 em {
   gap: 1rem;
   padding: 0.95rem 1rem 0.95rem 1.2rem;
   color: var(--paper);
-  background: var(--umbrella-coral);
-  border: 2px solid var(--storm-ink);
+  background: var(--coral);
+  border: 3px solid var(--ink);
   border-radius: 0.7rem;
   font-weight: 800;
   text-align: left;
   cursor: pointer;
-  box-shadow: 4px 5px 0 var(--storm-ink);
+  box-shadow: 4px 5px 0 var(--ink);
   transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
 

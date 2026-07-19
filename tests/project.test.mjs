@@ -7,6 +7,16 @@ import { fileURLToPath } from "node:url";
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const readProjectFile = (path) => readFile(resolve(projectRoot, path), "utf8");
 
+const effectiveRootTokens = (css) => {
+  const tokens = {};
+  for (const match of css.matchAll(/:root\s*\{([\s\S]*?)\}/g)) {
+    for (const declaration of match[1].matchAll(/(--[\w-]+)\s*:\s*([^;]+);/g)) {
+      tokens[declaration[1]] = declaration[2].trim();
+    }
+  }
+  return tokens;
+};
+
 const [html, css, script, readme, packageJson] = await Promise.all([
   readProjectFile("index.html"),
   readProjectFile("styles.css"),
@@ -146,12 +156,23 @@ test("documents operation, controls, checks, and accessibility features", () => 
 });
 
 test("uses the shared TinyChaos shell contract", () => {
-  for (const color of ["#15152a", "#fff5df", "#ff5d5d", "#4f7cff", "#ffd166", "#58d6a9", "#b695ff"]) {
-    assert.match(css, new RegExp(`--(?:ink|paper|coral|blue|butter|mint|lilac):\\s*${color}`, "i"));
+  const tokens = effectiveRootTokens(css);
+  for (const [name, expected] of Object.entries({
+    "--ink": "#15152a",
+    "--paper": "#fff5df",
+    "--coral": "#ff5d5d",
+    "--blue": "#4f7cff",
+    "--butter": "#ffd166",
+    "--mint": "#58d6a9",
+    "--lilac": "#b695ff",
+  })) {
+    assert.equal(tokens[name]?.toLowerCase(), expected, `${name} must resolve to ${expected}`);
   }
   assert.match(css, /--display-font:\s*Impact/);
   assert.match(css, /--body-font:\s*"Arial Rounded MT Bold"/);
   assert.match(css, /:focus-visible\s*\{[\s\S]*outline:\s*4px solid var\(--blue\)/);
+  assert.match(css, /\.utility-button\s*\{[\s\S]*border:\s*3px solid var\(--ink\)[\s\S]*box-shadow:\s*4px 4px 0 var\(--ink\)/);
+  assert.match(css, /\.try-button\s*\{[\s\S]*border:\s*3px solid var\(--ink\)[\s\S]*box-shadow:\s*4px 5px 0 var\(--ink\)/);
   assert.match(css, /body\s*\{[\s\S]*min-width:\s*0;[\s\S]*overflow-x:\s*clip;[\s\S]*overflow-y:\s*auto;/);
   assert.match(css, /html\s*\{[\s\S]*min-width:\s*0;/);
   assert.match(html, /href="https:\/\/sudarshanchaudhari\.github\.io\/TinyChaos\/"/);
