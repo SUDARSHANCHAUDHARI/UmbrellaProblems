@@ -2,6 +2,26 @@
 
 A complete, standalone interactive rainy scene built with semantic HTML, CSS, inline SVG, and vanilla JavaScript. Milo's umbrella protects almost anything except Milo.
 
+**Version:** 1.0.0<br>
+**Repository:** [SUDARSHANCHAUDHARI/UmbrellaProblems](https://github.com/SUDARSHANCHAUDHARI/UmbrellaProblems)<br>
+**Status:** Production-ready static web project; repository currently private
+
+## Contents
+
+- [Experience](#experience)
+- [Features](#features)
+- [Technology and architecture](#technology-and-architecture)
+- [Accessibility](#accessibility)
+- [Run locally](#run-locally)
+- [Verification](#verification)
+- [Project structure](#project-structure)
+- [Implementation notes](#implementation-notes)
+- [Browser support](#browser-support)
+- [Security and privacy](#security-and-privacy)
+- [Production deployment](#production-deployment)
+- [About](#about)
+- [License](#license)
+
 ## Experience
 
 Open the umbrella by:
@@ -39,7 +59,50 @@ After the tenth mishap, the rain stops first. Only then does the umbrella open c
 - Responsive layouts for desktop, tablet, and mobile
 - No runtime dependencies, build step, tracking, fonts, images, or external services
 
+## Technology and architecture
+
+| Area | Implementation |
+| --- | --- |
+| Markup | Semantic HTML5 with an inline, accessible SVG illustration |
+| Styling | Hand-written CSS with responsive layouts, custom properties, and keyframe animation |
+| Interaction | Vanilla JavaScript with pointer, click, touch, and keyboard input |
+| Audio | Web Audio API using locally generated oscillators and filtered noise |
+| State | A small client-side state machine with a shuffled ten-failure queue |
+| Testing | Node.js built-in test runner and JavaScript syntax checking |
+| Runtime dependencies | None |
+
+The scene markup lives in `index.html`, presentation and animation live in `styles.css`, and interaction state, particles, and audio generation live in `script.js`. This separation keeps the project directly deployable while making each concern independently maintainable.
+
+## Accessibility
+
+- The illustrated scene is keyboard operable with <kbd>Enter</kbd> and <kbd>Space</kbd>.
+- Native buttons provide dedicated sound, reset, and umbrella controls.
+- Visible focus styles and a skip link support keyboard navigation.
+- The SVG includes a title and description, while status changes are announced through a polite live region.
+- The interface does not rely on color alone to communicate progress.
+- `prefers-reduced-motion` reduces ambient particles and shortens animated transitions.
+- Sound is disabled by default and remains optional throughout the experience.
+
 ## Run locally
+
+### Prerequisites
+
+- A current version of Chrome, Edge, Firefox, or Safari
+- Node.js 20 or newer for verification
+- pnpm 10.28.2 for the documented scripts
+
+No dependency installation or build step is required.
+
+### Clone
+
+The repository is private, so the GitHub account cloning it must have access:
+
+```bash
+git clone https://github.com/SUDARSHANCHAUDHARI/UmbrellaProblems.git
+cd UmbrellaProblems
+```
+
+### Start the local server
 
 The project can be opened directly by loading `index.html` in a modern browser. Serving it locally is recommended:
 
@@ -64,6 +127,8 @@ pnpm check
 ```
 
 This checks JavaScript syntax and runs Node's built-in test runner. The tests verify the standalone file set, all ten scenario definitions, interaction modes, audio generation, success ordering, accessibility hooks, responsive styles, and reduced-motion support.
+
+Expected result: all nine tests pass with no failures.
 
 ## Project structure
 
@@ -97,6 +162,12 @@ The reduced-motion media query removes ambient movement and limits the particle 
 
 The project targets current versions of Chrome, Edge, Firefox, and Safari. Web Audio is optional; the visual experience remains fully functional when audio is unavailable.
 
+## Security and privacy
+
+Umbrella Problems has no backend, authentication, cookies, analytics, user-data storage, forms, or network requests. All illustration, animation, interaction, and audio behavior runs locally in the browser.
+
+The document includes a restrictive Content Security Policy fallback and a no-referrer policy. Vulnerabilities should be reported privately according to [SECURITY.md](SECURITY.md), not through a public issue. Release history is maintained in [CHANGELOG.md](CHANGELOG.md).
+
 ## Production deployment
 
 The site is ready for any static host: publish the repository root with no build command. Use `index.html` as the entry point and run `pnpm check` before each release.
@@ -116,3 +187,29 @@ See `SECURITY.md` for the current security model and reporting guidance.
 ## License
 
 This project is currently marked `UNLICENSED` in `package.json`.
+
+---
+
+## About
+
+I'm Sudarshan Chaudhari, a Senior Quality Engineer, Test Automation specialist, and AI systems builder based in Bangkok, Thailand.
+
+I have 13+ years of experience in software quality engineering, working across SaaS, fintech, gaming, web, mobile, cloud, and digital signage platforms. My background combines hands-on test automation with QA leadership, test strategy, CI/CD, release quality, production investigation, and cross-platform validation.
+
+Alongside my professional QA career, I run [SudarshanTechLabs](https://sudarshantechlabs.com/), my independent engineering and product lab where I design, build, test, and ship software across Android, web, AI, cybersecurity, developer tooling, and cross-platform applications.
+
+### What I work on
+
+- ⚙️ **Quality Engineering & Test Automation** — Playwright, Selenium, Cypress, Appium, API testing, automation frameworks, end-to-end testing, CI/CD, release gates, GitHub Actions, risk-based testing, and production validation
+- 🤖 **AI Systems & Automation** — AI agents, multi-agent orchestration, MCP servers, AI-assisted QA, prompt tooling, developer workflows, automation systems, and Claude Code plugins
+- 📱 **Mobile & Cross-Platform Applications** — Android applications built with Kotlin and Jetpack Compose, Google Play releases, automated build and publishing pipelines, and cross-platform development spanning iOS, web, Windows, and macOS
+- 🌐 **Web Applications & Platforms** — Full-stack applications using Next.js, TypeScript, Firebase, Cloudflare, REST APIs, and modern web infrastructure
+- 🛠️ **Developer Tooling & CLI Engineering** — Rust, Python, TypeScript, CLI utilities, multi-repository tooling, build automation, release tooling, and engineering productivity systems
+- 🛡️ **Cybersecurity & Observability** — Threat detection, log analysis, security auditing, vulnerability assessment, monitoring, and security-focused developer tools
+- 📺 **Digital Signage & Device Platforms** — Content validation, playback testing, device compatibility, production investigation, monitoring, and QA across diverse hardware and operating-system environments
+
+My work sits at the intersection of quality engineering, automation, AI, and software development. I approach products with a QA mindset from the beginning: understanding failure modes, designing for testability, automating repetitive work, and building release confidence into the engineering process.
+
+Through SudarshanTechLabs, I also build products and tools from idea to production, covering architecture, development, testing, CI/CD, release automation, monitoring, and ongoing maintenance.
+
+🌐 [sudarshantechlabs.com](https://sudarshantechlabs.com/) · 💼 [LinkedIn](https://linkedin.com/in/sudarshan-chaudhari) · 🐙 [GitHub](https://github.com/SUDARSHANCHAUDHARI) · ✉️ [sunny.sudarshan@gmail.com](mailto:sunny.sudarshan@gmail.com)
