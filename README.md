@@ -150,6 +150,38 @@ UmbrellaProblems/
 └── README.md
 ```
 
+## Technology and architecture
+
+Plain HTML, CSS, and JavaScript with no framework, bundler, or build step. `package.json`
+declares no dependencies at all — it only carries the serve and verification scripts.
+
+- `index.html` — semantic markup plus the inline SVG scene
+- `styles.css` — layout, animation, and media queries
+- `script.js` — interaction state, particle effects, and generated Web Audio
+- `tests/project.test.mjs` — checks run by Node's built-in test runner
+
+Everything ships as static files, so the site can be served from any static host with no
+server-side runtime.
+
+## Accessibility
+
+- Semantic controls with visible focus states and a skip link
+- Full keyboard operation: `Enter` and `Space` activate the controls
+- Descriptive SVG text and live status updates for screen readers
+- `prefers-reduced-motion` reduces the particle field and collapses animation and transition
+  durations to near zero, and JavaScript shortens matching waits so reduced-motion users are
+  not left waiting through effects they cannot see
+
+## Security and privacy
+
+No data leaves the browser. `script.js` makes no network requests and uses no cookies,
+`localStorage`, `sessionStorage`, or IndexedDB, so there is nothing to collect and no state to
+clear. There are no analytics, trackers, external fonts, remote images, or third-party
+services, and no runtime dependencies to audit.
+
+Audio is generated with Web Audio rather than fetched. See [SECURITY.md](SECURITY.md) for
+vulnerability reporting.
+
 ## Implementation notes
 
 The failure list is shuffled once on reset and consumed as a queue. This keeps each attempt random while guaranteeing that every requested mishap appears once during the ten-attempt story.
@@ -183,6 +215,18 @@ Before making the repository or deployment public:
 5. update `CHANGELOG.md` for any user-facing change.
 
 See `SECURITY.md` for the current security model and reporting guidance.
+
+## Author
+
+**Sudarshan Chaudhari**
+
+Solo indie developer and founder of **SudarshanTechLabs**, based in Bangkok, Thailand.
+
+- GitHub: [@SUDARSHANCHAUDHARI](https://github.com/SUDARSHANCHAUDHARI)
+- Developer contact: [sunny.sudarshan@gmail.com](mailto:sunny.sudarshan@gmail.com)
+- Business and legal contact: [sudarshantechlabs@gmail.com](mailto:sudarshantechlabs@gmail.com)
+
+UmbrellaProblems was designed and developed by Sudarshan Chaudhari under SudarshanTechLabs.
 
 ## License
 

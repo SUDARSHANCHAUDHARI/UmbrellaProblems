@@ -147,12 +147,27 @@ test("includes accessibility, responsive, and reduced-motion behavior", () => {
 });
 
 test("documents operation, controls, checks, and accessibility features", () => {
-  for (const section of ["## Experience", "## Features", "## Run locally", "## Verification", "## Project structure"]) {
+  for (const section of [
+    "## Experience",
+    "## Features",
+    "## Technology and architecture",
+    "## Accessibility",
+    "## Run locally",
+    "## Verification",
+    "## Project structure",
+    "## Security and privacy",
+    "## Production deployment",
+    "## Author",
+  ]) {
     assert.match(readme, new RegExp(section));
   }
   assert.match(readme, /Enter.*Space/s);
   assert.match(readme, /prefers-reduced-motion/);
   assert.match(readme, /pnpm check/);
+  assert.match(readme, /Sudarshan Chaudhari/);
+  assert.match(readme, /SudarshanTechLabs/);
+  assert.match(readme, /github\.com\/SUDARSHANCHAUDHARI/);
+  assert.match(readme, /mailto:sudarshantechlabs@gmail\.com/);
 });
 
 test("uses the shared TinyChaos shell contract", () => {
